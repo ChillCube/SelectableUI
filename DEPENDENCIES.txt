@@ -1,1 +1,2 @@
 https://github.com/ChillCube/SmoothUI
+https://github.com/ChillCube/SpriteHelper
