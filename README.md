@@ -30,3 +30,9 @@ push-all-addons
 ```
 
 
+
+## Used By
+2 other ChillCube addon(s) depend on this:
+
+- [Godot_SpriteBasedSmoothMenuButton2D](https://github.com/ChillCube/Godot_SpriteBasedSmoothMenuButton2D)
+- [ItemFrame2D](https://github.com/ChillCube/ItemFrame2D)
