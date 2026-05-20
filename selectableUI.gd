@@ -27,9 +27,9 @@ var _collision_shape_node : CollisionShape2D = null
 
 		_handle_selection_visuals()
 
-@export var selected_scale : float = 1.1 ## Scale multiplier applied when this element is selected.
-@export var selected_color : Color = Color(1.2, 1.2, 1.2, 1.0) ## Color tint applied when this element is selected.
-@export var lerp_time : float = 0.15 ## Duration in seconds for selection scale and color transitions.
+@export var selected_scale : float = 1.1 ## Scale multiplier applied when this element is selected
+@export var selected_color : Color = Color(1.2, 1.2, 1.2, 1.0) ## Color tint applied when this element is selected
+@export var lerp_time : float = 0.15 ## Duration in seconds for selection scale and color transitions
 
 func _ready() -> void:
 	super._ready()
@@ -37,7 +37,7 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		_area2D_creation()
 
-func _get_collision_size() -> Vector2:
+func _get_collision_size() -> Vector2: ## Returns the collision rect size; override in subclasses to use a custom size
 	return SpriteHelper.get_size(self)
 
 func _area2D_creation() -> void:
@@ -70,7 +70,7 @@ func _process(delta: float) -> void:
 	if focused_element == null: _check_for_initial_navigation()
 	if is_selected and not is_hidden: _handle_controller_input()
 
-func _handle_selection_visuals() -> void:
+func _handle_selection_visuals() -> void: ## Tweens scale and self_modulate to their selected/unselected targets; override to add extra visuals
 	if _visual_tween: _visual_tween.kill()
 	_visual_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
@@ -111,7 +111,7 @@ func _check_for_initial_navigation() -> void:
 				e.is_selected = true
 				return
 
-func _navigate_to_closest(dir: Vector2) -> void:
+func _navigate_to_closest(dir: Vector2) -> void: ## Finds and selects the nearest SelectableUI in the given d-pad direction
 	var best_candidate : SelectableUI = null
 	var min_score := INF
 
