@@ -13,6 +13,7 @@ signal released ## Emitted when the accept action is released on this element
 var _visual_tween : Tween
 var _area : Area2D = null
 var _collision_shape_node : CollisionShape2D = null
+var _base_scale : float = 1.0
 
 @export_group("Controller & Selection")
 @export var is_selected : bool = false: ## Whether this element is currently highlighted/selected.
@@ -33,12 +34,14 @@ var _collision_shape_node : CollisionShape2D = null
 
 		_handle_selection_visuals()
 
-@export var selected_scale : float = 1.1 ## Scale multiplier applied when this element is selected
+@export var base_scale : float = 0.0 ## Base scale when not selected. Leave at 0 to use the node's scale at startup.
+@export var selected_scale_change : float = 1.1 ## Scale multiplier relative to base scale when selected (1 = no change, 2 = double)
 @export var selected_color : Color = Color(1.2, 1.2, 1.2, 1.0) ## Color tint applied when this element is selected
 @export var lerp_time : float = 0.15 ## Duration in seconds for selection scale and color transitions
 
 func _ready() -> void:
 	super._ready()
+	_base_scale = scale.x if base_scale == 0.0 else base_scale
 	add_to_group("selectable_ui")
 	if not Engine.is_editor_hint():
 		_area2D_creation()
@@ -80,7 +83,7 @@ func _handle_selection_visuals() -> void: ## Tweens scale and self_modulate to t
 	if _visual_tween: _visual_tween.kill()
 	_visual_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
-	var target_scale_val := selected_scale if is_selected else 1.0
+	var target_scale_val := _base_scale * selected_scale_change if is_selected else _base_scale
 	_visual_tween.tween_property(self, "scale", Vector2.ONE * target_scale_val, lerp_time)
 	_visual_tween.tween_property(self, "self_modulate", selected_color if is_selected else Color.WHITE, lerp_time)
 
