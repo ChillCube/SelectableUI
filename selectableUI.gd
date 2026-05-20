@@ -5,6 +5,11 @@ class_name SelectableUI
 
 static var focused_element : SelectableUI = null
 
+signal selected ## Emitted when this element becomes selected
+signal deselected ## Emitted when this element loses selection
+signal pressed ## Emitted when the accept action is pressed on this element
+signal released ## Emitted when the accept action is released on this element
+
 var _visual_tween : Tween
 var _area : Area2D = null
 var _collision_shape_node : CollisionShape2D = null
@@ -20,6 +25,7 @@ var _collision_shape_node : CollisionShape2D = null
 			if focused_element and focused_element != self:
 				focused_element.is_selected = false
 			focused_element = self
+			selected.emit()
 		else:
 			_on_deselected()
 			if focused_element == self:
@@ -79,13 +85,13 @@ func _handle_selection_visuals() -> void: ## Tweens scale and self_modulate to t
 	_visual_tween.tween_property(self, "self_modulate", selected_color if is_selected else Color.WHITE, lerp_time)
 
 func _on_deselected() -> void:
-	pass
+	deselected.emit()
 
 func _on_accept_pressed() -> void:
-	pass
+	pressed.emit()
 
 func _on_accept_released() -> void:
-	pass
+	released.emit()
 
 func _handle_controller_input() -> void:
 	if Input.is_action_just_pressed("ui_accept"):

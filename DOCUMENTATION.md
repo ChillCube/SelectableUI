@@ -16,5 +16,13 @@ UI element with selection, visual feedback, and controller/keyboard navigation s
 | **selected_color** | `Color` | `Color(1.2, 1.2, 1.2, 1.0)` | Color tint applied when this element is selected |
 | **lerp_time** | `float` | `0.15` | Duration in seconds for selection scale and color transitions |
 
+### 🔔 Signals
+| Signal | Arguments | Description |
+| :--- | :--- | :--- |
+| **selected** | - |  Emitted when this element becomes selected |
+| **deselected** | - |  Emitted when this element loses selection |
+| **pressed** | - |  Emitted when the accept action is pressed on this element |
+| **released** | - |  Emitted when the accept action is released on this element |
+
 ---
 
