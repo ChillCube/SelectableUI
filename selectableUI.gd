@@ -80,6 +80,7 @@ func _process(delta: float) -> void:
 	if is_selected and not is_hidden: _handle_controller_input()
 
 func _handle_selection_visuals() -> void: ## Tweens scale and self_modulate to their selected/unselected targets; override to add extra visuals
+	if _spawn_tween: _spawn_tween.kill()
 	if _visual_tween: _visual_tween.kill()
 	_visual_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
