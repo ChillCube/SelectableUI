@@ -1,1 +1,4 @@
 https://github.com/ChillCube/SmoothUI
+
+# --- Manually Add Dependencies Here  ---
+https://github.com/ChillCube/SpriteHelper
