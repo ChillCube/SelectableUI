@@ -30,4 +30,5 @@ push-all-addons
 
 ## Dependencies
 
+- [SmoothUI](https://github.com/ChillCube/SmoothUI)
 - [SpriteHelper](https://github.com/ChillCube/SpriteHelper)
