@@ -32,3 +32,8 @@ push-all-addons
 
 - [SmoothUI](https://github.com/ChillCube/SmoothUI)
 - [SpriteHelper](https://github.com/ChillCube/SpriteHelper)
+
+## Used By
+1 other ChillCube addon(s) depend on this:
+
+- [Godot_SpriteBasedSmoothMenuButton2D](https://github.com/ChillCube/Godot_SpriteBasedSmoothMenuButton2D)
